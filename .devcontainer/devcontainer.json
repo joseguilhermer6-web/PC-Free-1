@@ -1,0 +1,16 @@
+{
+  "name": "PC-Free — Windows 10",
+  "dockerComposeFile": "../windows10.yml",
+  "service": "windows",
+  "initializeCommand": "bash scripts/prepare.sh",
+  "shutdownAction": "stopCompose",
+  "forwardPorts": [8006],
+  "portsAttributes": {
+    "8006": {
+      "label": "Windows — abrir no navegador",
+      "onAutoForward": "notify",
+      "visibility": "private"
+    }
+  },
+  "otherPortsAttributes": { "onAutoForward": "ignore" }
+}

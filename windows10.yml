@@ -1,0 +1,26 @@
+services:
+  windows:
+    image: ghcr.io/dockur/windows:latest
+    pull_policy: always
+    environment:
+      VERSION: "10"
+      RAM_SIZE: "half"
+      CPU_CORES: "max"
+      DISK_SIZE: "max"
+      DISK_MINIMUM: "1G"
+    env_file:
+      - .env
+    devices:
+      - /dev/kvm
+      - /dev/net/tun
+    cap_add:
+      - NET_ADMIN
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    ports:
+      - "8006:8006"
+    volumes:
+      - ./windows:/storage
+    restart: on-failure
+    stop_grace_period: 2m
